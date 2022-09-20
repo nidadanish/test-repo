@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<addon scheme="3.0">
+	<id>ec_custom_api</id>
+	<name>Ecarter: API Changes</name>
+    <description>API Changes for Nidadanish App</description>
+	<version>1.0</version>
+	<priority>323232</priority>
+	<position>125</position>
+	<status>active</status>
+    <has_icon>Y</has_icon>
+	<supplier>Ecarter Technologies Pvt. Ltd.</supplier>
+	<default_language>en</default_language>
+	<auto_install>MULTIVENDOR</auto_install>
+</addon>
