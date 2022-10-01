@@ -24,7 +24,6 @@
     {/if}
 
     {if $display_steps.step_four || $cart.edit_step == "step_four"}
-		
         {$edit = $cart.edit_step == "step_four"}
         {$number_of_step = $number_of_step + 1}
         {include file="views/checkout/components/steps/step_four.tpl" step="four" edit=$edit complete=$completed_steps.step_four}

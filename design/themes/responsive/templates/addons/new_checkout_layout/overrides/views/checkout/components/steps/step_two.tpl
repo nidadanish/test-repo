@@ -12,22 +12,22 @@
         {if $complete && !$edit}
             {hook name="checkout:step_two_edit_link"}
             <span class="ty-step__title-right">
-                {include file="buttons/button.tpl" but_meta="ty-btn__secondary" but_href="checkout.checkout?edit_step=step_two&from_step={$cart.edit_step}" but_target_id="checkout_*" but_text=__("change") but_role="tool"}
+                {include file="buttons/button.tpl" but_meta="ty-btn__secondary cm-ajax" but_href="checkout.checkout?edit_step=step_two&from_step={$cart.edit_step}" but_target_id="checkout_*" but_text=__("change") but_role="tool"}
             </span>
             {/hook}
         {/if}
 
         {hook name="checkout:step_two_edit_link_title"}
         {if $complete && !$edit}
-            <a class="ty-step__title-txt" href="{"checkout.checkout?edit_step=step_two&from_step={$cart.edit_step}"|fn_url}" data-ca-target-id="checkout_*">{__("billing_shipping_address")}</a>
+            <a class="ty-step__title-txt cm-ajax" href="{"checkout.checkout?edit_step=step_two&from_step={$cart.edit_step}"|fn_url}" data-ca-target-id="checkout_*">{__("billing_shipping_address")}</a>
         {else}
             <span class="ty-step__title-txt">{__("billing_shipping_address")}</span>
         {/if}
         {/hook}
     </h3>
-{$ajf=true}
+
     <div id="step_two_body" class="ty-step__body{if $edit}-active{/if}{if !$edit} hidden{/if} cm-skip-save-fields">
-        <form name="step_two_billing_address" class="{if $ajf}{$ajax_form} cm-ajax-full-render {/if}{if $final_step == "step_two"}cm-checkout-recalculate-form{/if}" action="{""|fn_url}" method="{if !$edit}get{else}post{/if}">
+        <form name="step_two_billing_address" class="{$ajax_form} cm-ajax-full-render {if $final_step == "step_two"}cm-checkout-recalculate-form{/if}" action="{""|fn_url}" method="{if !$edit}get{else}post{/if}">
             <input type="hidden" name="update_step" value="step_two" />
             <input type="hidden" name="next_step" value="{$next_step}" />
             <input type="hidden" name="result_ids" value="checkout*,account*" />
@@ -73,6 +73,11 @@
                     </div>
                 {/if}
 
+                {if $profile_fields[$sec_section]}
+                    <div class="clearfix shipping-address__switch" data-ct-address="shipping-address">
+                        {include file="views/profiles/components/profile_fields.tpl" section=$sec_section body_id=$body_id address_flag=$profile_fields|fn_compare_shipping_billing ship_to_another=$cart.ship_to_another title=$sec_section_text grid_wrap="checkout__block"}
+                    </div>
+                {/if}
                 {/hook}
 
                 {if $final_step == "step_two"}

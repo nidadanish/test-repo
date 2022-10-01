@@ -116,6 +116,7 @@
 
 
                                 {if $order_info.child_order_details_info}
+								{*
                                     <tbody>
                                     <tr class="ty-orders-summary__row no-border">
                                             <td>{__("shipping_method")}:&nbsp;</td>
@@ -127,6 +128,18 @@
                                             {/if}
                                         {/foreach}
                                     </tbody>
+									*}
+									
+									
+									
+									 <tbody>
+                                    <tr class="ty-orders-summary__row no-border">
+                                            <td>{__("shipping_method")}:&nbsp;</td>
+                                            <td>&nbsp;</td>
+                                        </tr>
+										  </tbody>
+									{include file="addons/sc_full_order/components/order_shipping.tpl" cp_show_company=false order_info=$order_info}
+									
                                 {else}
                                     {include file="addons/sc_full_order/components/order_shipping.tpl" cp_show_company=false order_info=$order_info}
                                 {/if}
@@ -138,10 +151,10 @@
                                     </tr>
 
                                 {if $order_info.display_shipping_cost|floatval}
-                                    {if $order_info.cp_united_ship_order}
+                                    {if $order_info.sc_united_ship_order}
                                         <tr class="ty-orders-summary__row">
                                             <td>{__("shipping_cost")}:&nbsp;</td>
-                                            <td data-ct-orders-summary="summary-shipcost">{include file="common/price.tpl" value=$order_info.cp_united_ship_order.total}</td>
+                                            <td data-ct-orders-summary="summary-shipcost">{include file="common/price.tpl" value=$order_info.sc_united_ship_order.total}</td>
                                         </tr>
 
                                     {elseif $order_info.child_order_details_info}

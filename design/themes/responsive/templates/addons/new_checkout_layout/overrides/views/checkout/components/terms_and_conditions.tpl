@@ -4,7 +4,7 @@
         <div class="cm-field-container">
             {strip}
             <label for="id_accept_terms_{$suffix}" class="cm-check-agreement">
-                <input type="checkbox" checked id="id_accept_terms_{$suffix}" name="accept_terms" value="Y" class="cm-agreement checkbox" {if $iframe_mode}onclick="fn_check_agreements('{$suffix}');"{/if} />
+                <input type="checkbox" id="id_accept_terms_{$suffix}" name="accept_terms" value="Y" class="cm-agreement checkbox" {if $iframe_mode}onclick="fn_check_agreements('{$suffix}');"{/if} />
                 {capture name="terms_link"}
                     <a id="sw_terms_and_conditions_{$suffix}" class="cm-combination ty-dashed-link">
                         {__("checkout_terms_n_conditions_name")}

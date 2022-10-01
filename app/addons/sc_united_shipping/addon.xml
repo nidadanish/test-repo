@@ -7,7 +7,6 @@
     <status>active</status>
     <default_language>ru</default_language>
     <queries>
-
         <item for="install">
             ALTER TABLE `?:companies`
             ADD COLUMN `sc_united_use_vendor` char(1)  NOT NULL DEFAULT 'N';
@@ -20,9 +19,6 @@
             ALTER TABLE `?:orders`
             ADD COLUMN `is_sc_united_ship_order` char(1)  NOT NULL DEFAULT 'N';
         </item>
-
-
-
 
         <item for="uninstall">
             ALTER TABLE `?:users` DROP COLUMN `sc_united_use_vendor`;

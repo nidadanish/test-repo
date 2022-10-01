@@ -1,7 +1,7 @@
 <div class="ty-orders-detail-vendor">
     <div class="ty-orders-detail-vendor__header">
         <div class="ty-orders-detail-vendor__header-lc">
-            {__("vendor")}: <a href="{"companies.view&company_id=`$order_info.company_id`"|fn_url}"><strong>{$order_info.company_id|fn_get_company_name}</strong></a>
+            {*{__("vendor")}: <a href="{"companies.view&company_id=`$order_info.company_id`"|fn_url}"><strong>{$order_info.company_id|fn_get_company_name}</strong></a>*}
         </div>
         <div class="ty-orders-detail-vendor__header-rc cm-combination" id="sw_order_{$order_info.order_id}"> 
             <i class="ut2-icon-outline-expand_more"></i>

@@ -459,6 +459,8 @@ function fn_print_order_invoices($order_ids, $params = [])
     $data['profile_fields'] = fn_get_profile_fields('I', [], $params['lang_code']);
 
     foreach ($order_ids as $order_id) {
+        //cs-coding
+        fn_set_hook('csc_print_order_invoices_pre', $order_id, $params);
         if (Registry::get('settings.Appearance.email_templates') === 'old') {
             $order_info = fn_get_order_info($order_id, false, true, false, false, $params['lang_code']);
 

@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($mode == 'delete') {
         $children_ids = db_get_fields('SELECT order_id FROM ?:orders WHERE parent_order_id = ?i ORDER BY order_id ASC', $_REQUEST['order_id']);
-        
+
         if (!empty($children_ids)) {
             foreach ($children_ids as $id) {
                 /*
@@ -27,8 +27,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 fn_delete_order($id);
 
             }
-            
-        }      
+
+        }
     }
 
     if ($mode == 'update_status') {
@@ -38,10 +38,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $new_status = $_REQUEST['status'];
 
         if ($order_info['parent_order_id'] == 0 && $order_info['is_parent_order'] == 'Y') {
-            //db_query('UPDATE ?:orders SET status = ?s WHERE parent_order_id = ?i ', $status_to,$order_info['order_id']);
+            //db_query('UPDATE ?:orders SET status = ?s WHERE parent_order_id = ?i ', $new_status, $order_info['order_id']);
 
             //также сменим статус самого заказа парента
-           // $res = db_query('UPDATE ?:orders SET status = ?s WHERE order_id = ?i ', $new_status,$order_info['order_id']);
+           //db_query('UPDATE ?:orders SET status = ?s WHERE order_id = ?i ', $new_status,$order_info['order_id']);
 
         }
     }

@@ -119,8 +119,8 @@
                     <td class="ty-orders-search__item ty-orders-search__item-suborders"> 
                         {$company_data = $suborder.company_id|fn_get_company_data}
                         <ul>
-                        <li><span class="hidden-phone">{__("cp_parent_order_id")}:</span> <a href="{"orders.details?order_id=`$suborder.order_id`"|fn_url}"><strong>#{$suborder.order_id}</strong></a></li>
-                      {*  <li>{__("vendor")}: <a href="{"companies.products?company_id=`$company_data.company_id`"|fn_url}"><strong>{$company_data.company}</strong></a></li>*}
+                        <li><span class="hidden-phone">{__("sc_parent_order_id")}:</span> <a href="{"orders.details?order_id=`$suborder.order_id`"|fn_url}"><strong>#{$suborder.order_id}</strong></a></li>
+                        {*<li>{__("vendor")}: <a href="{"companies.products?company_id=`$company_data.company_id`"|fn_url}"><strong>{$company_data.company}</strong></a></li>*}
                         </ul>
                     </td>
                     <td class="ty-orders-search__item">{include file="common/status.tpl" status=$suborder.status display="view"}</td>

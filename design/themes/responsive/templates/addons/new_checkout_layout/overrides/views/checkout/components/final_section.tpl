@@ -11,34 +11,9 @@
 {if $show_place_order}
 
     <div class="clearfix {if !$is_payment_step} checkout__block ty-checkout-block-terms{/if}">
+        {hook name="checkout:final_section_customer_notes"}
             {include file="views/checkout/components/customer_notes.tpl"}
-			{capture name="mailing_lists"}
-				{assign var="show_newsletters_content" value=false}
-
-				{hook name="newsletters:checkout_email_subscription"}
-				<div class="subscription-container" id="subsciption_{$tab_id}">
-					{foreach from=$page_mailing_lists item=list}
-						{if $list.show_on_checkout}
-							{assign var="show_newsletters_content" value=true}
-						{/if}
-						<input type="hidden" name="all_mailing_lists[]" value="{$list.list_id}" />
-
-						<div class="ty-newsletters__item{if !$list.show_on_checkout} hidden{/if}">
-							<label><input type="checkbox" checked name="mailing_lists[]" value="{$list.list_id}" {if $user_mailing_lists[$list.list_id]}checked="checked"{/if} class="checkbox cm-news-subscribe" />{$list.object}</label>
-						</div>
-					{/foreach}
-				<!--subsciption_{$tab_id}--></div>
-				{/hook}
-			{/capture}
-
-			{if $show_newsletters_content}
-			<div class="ty-newsletters">
-				{include file="common/subheader.tpl" title=__("text_signup_for_subscriptions")}
-
-				{$smarty.capture.mailing_lists nofilter}
-			</div>
-			{/if}
-
+        {/hook}
         
         {if !$suffix}
             {assign var="suffix" value=""|uniqid}

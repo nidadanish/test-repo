@@ -1,14 +1,23 @@
 <?php
 
-
 use Tygh\Registry;
+use Tygh\Enum\SiteArea;
 
 if (!defined('BOOTSTRAP')) { die('Access denied'); }
 
+/** @var string $mode */
+
+/*
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
-
-}
+    if ($mode === 'bulk_print' && !empty($_REQUEST['order_ids'])) {
+        foreach ($_REQUEST['order_ids'] as $key => $order_id) {
+            $order_info = fn_get_order_info($order_id);
+            if (empty($order_info['parent_order_id'])) {
+                $order_ids = db_get_fields('select order_id from ?:orders where parent_order_id = ?i', $order_id);
+            }
+        }
+    }
+}*/
 
 if ($mode == 'details') {
 

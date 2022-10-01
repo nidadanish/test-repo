@@ -5,41 +5,14 @@ use Tygh\Enum\UserTypes;
 if (!defined('BOOTSTRAP')) {die('Access denied');}
 
 
-function fn_sc_full_order_print_order_invoices_pre($order_ids, &$params){
-
-
-
-
-    if(count($order_ids) ==1){
-
-        $order_id = current($order_ids);
-
-
-
-        $is_parent_order = db_get_field("SELECT is_parent_order FROM ?:orders WHERE order_id =?i",$order_id);
-
-        if($is_parent_order  == "Y") {
-
-            if (AREA == "C") {
-
-                $params['template_code'] = 'sc_one_order_t';
-
-            } elseif (AREA == "A") {
-                $params['template_code'] = 'sc_one_order_t_admin';
-            }
-
-            if (Registry::get('settings.Appearance.email_templates') != 'old'){
-
-
-
-                //Registry::set('settings.Appearance.email_templates','old');
-
-               // $params['html_wrap'] = 'addons/cp_one_order/'
-
-
-
-            }
+function fn_sc_full_order_csc_print_order_invoices_pre($order_id, &$params){
+    $is_parent_order = (bool) db_get_field("SELECT order_id FROM ?:orders WHERE parent_order_id = ?i",$order_id);
+    if ($is_parent_order) {
+        if (AREA == "A") {
+            $params['template_code'] = 'sc_one_order_t_admin';
         }
+    } else {
+        $params['template_code'] = 'invoice';
     }
 }
 

@@ -25,7 +25,7 @@
                     {else}
                         {$shipping.shipping}
                     {/if}
-                    {if !$smarty.foreach.f_shipp.last}<br>{/if}
+                    {if !$smarty.foreach.f_shipp.last}<br>{/if}										{break}
                 {/foreach}
             {/if}
             {/hook}

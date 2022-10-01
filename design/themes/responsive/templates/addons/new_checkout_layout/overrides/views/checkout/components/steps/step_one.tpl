@@ -29,7 +29,7 @@
 
         {hook name="checkout:step_one_edit_link_title"}
         {if $contact_info_population && !$edit}
-            <a class="ty-step__title-txt" href="{"checkout.checkout?edit_step=step_one&from_step={$cart.edit_step}"|fn_url}" data-ca-target-id="checkout_*">{$title|strip_tags nofilter}</a>
+            <a class="ty-step__title-txt cm-ajax" href="{"checkout.checkout?edit_step=step_one&from_step={$cart.edit_step}"|fn_url}" data-ca-target-id="checkout_*">{$title|strip_tags nofilter}</a>
         {else}
             <span class="ty-step__title-txt">{$title|strip_tags nofilter}</span>
         {/if}
@@ -44,7 +44,7 @@
                 </div>
             </div>
             <div id="step_one_register" class="clearfix{if $smarty.request.login_type != "register"} hidden{/if}">
-                <form name="step_one_register_form" class="" action="{""|fn_url}" method="post">
+                <form name="step_one_register_form" class="{$ajax_form} cm-ajax-full-render" action="{""|fn_url}" method="post">
                     {hook name="checkout:user_register_form"}
                     <input type="hidden" name="result_ids" value="checkout*,account*" />
                     <input type="hidden" name="return_to" value="checkout" />
@@ -68,14 +68,14 @@
                 </form>
             </div>
         {else}
-            <form name="step_one_contact_information_form" {if $ajaxcheckout} class="{$ajax_form}" {/if} action="{""|fn_url}" method="{if !$edit}get{else}post{/if}">
+            <form name="step_one_contact_information_form" class="{$ajax_form}" action="{""|fn_url}" method="{if !$edit}get{else}post{/if}">
                 <input type="hidden" name="update_step" value="step_one" />
                 <input type="hidden" name="next_step" value="{$next_step}" />
                 <input type="hidden" name="result_ids" value="checkout*" />
                 {if $edit}
                     <div class="clearfix">
                         <div class="checkout__block">
-                            {include file="views/profiles/components/profile_fields.tpl" req="Y" section="C" nothing_extra="Y" email_extra=$smarty.capture.email_extra}
+                            {include file="views/profiles/components/profile_fields.tpl" section="C" nothing_extra="Y" email_extra=$smarty.capture.email_extra}
                             <a href="{"auth.change_login"|fn_url}" class="ty-checkout__relogin">{__("sign_in_as_different")}</a>
                         </div>
                     </div>

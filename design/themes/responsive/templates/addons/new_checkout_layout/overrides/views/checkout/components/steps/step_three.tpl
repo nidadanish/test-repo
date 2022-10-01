@@ -14,7 +14,7 @@
 
         {hook name="checkout:step_three_edit_link_title"}
         {if !$show_number_of_steps}
-            <a class="ty-step__title-txt" href="{"checkout.checkout?edit_step=step_three&from_step={$cart.edit_step}"|fn_url}" data-ca-target-id="checkout_*">{__("shipping_options")}</a>
+            <a class="ty-step__title-txt cm-ajax" href="{"checkout.checkout?edit_step=step_three&from_step={$cart.edit_step}"|fn_url}" data-ca-target-id="checkout_*">{__("shipping_options")}</a>
         {else}
             <span class="ty-step__title-txt">{__("shipping_options")}</span>
         {/if}
