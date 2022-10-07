@@ -63,7 +63,7 @@
                     <strong>#{$o.order_id}</strong>
                 </a>
                 {if $o.childs}
-                    <span class="cp-single-order-btn cm-combination" id="sw_single_order_{$o.order_id}">
+                    <span class="cp-single-order-btn cm-combination ty-btn" id="sw_single_order_{$o.order_id}">
                     {__("cp_show_suborders")}
                     <i class="ut2-icon-outline-expand_more"></i>
                     </span>
@@ -119,8 +119,8 @@
                     <td class="ty-orders-search__item ty-orders-search__item-suborders"> 
                         {$company_data = $suborder.company_id|fn_get_company_data}
                         <ul>
-                        <li><span class="hidden-phone">{__("sc_parent_order_id")}:</span> <a href="{"orders.details?order_id=`$suborder.order_id`"|fn_url}"><strong>#{$suborder.order_id}</strong></a></li>
-                        {*<li>{__("vendor")}: <a href="{"companies.products?company_id=`$company_data.company_id`"|fn_url}"><strong>{$company_data.company}</strong></a></li>*}
+                        <li><span class="hidden-phone">{__("order_id")}:</span> <a href="{"orders.details?order_id=`$suborder.order_id`"|fn_url}"><strong>#{$suborder.order_id}</strong></a></li>
+                      {*  <li>{__("vendor")}: <a href="{"companies.products?company_id=`$company_data.company_id`"|fn_url}"><strong>{$company_data.company}</strong></a></li>*}
                         </ul>
                     </td>
                     <td class="ty-orders-search__item">{include file="common/status.tpl" status=$suborder.status display="view"}</td>

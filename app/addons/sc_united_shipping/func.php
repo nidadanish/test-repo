@@ -98,45 +98,25 @@ function fn_sc_united_shipping_place_order_post($cart,
                                                 $order_status,
                                                 $short_order_data,
                                                 $notification_rules){
-
     if($parent_order_id > 0){
-
-
         $child_orders = db_get_array("SELECT shipping_cost, order_id FROM ?:orders WHERE parent_order_id =?i",$parent_order_id);
-
         if($child_orders){
-
             foreach ($child_orders as $data){
-
-
-
-
                 if($data['shipping_cost'] >= 0 ){
-
                     //проверим а есть ли вообще продавец для заказа-доставки
                     $vendor_id = db_get_field("SELECT company_id FROM ?:companies WHERE sc_united_use_vendor =?s","Y");
                     //проверим не был ли УЖЕ размещен заказ для единой доставки
                     $check_exist_united_ship_order = db_get_field("SELECT order_id FROM ?:orders WHERE parent_order_id =?i and is_sc_united_ship_order = ?s", $parent_order_id, "Y");
-
-
                     db_query("UPDATE ?:orders SET shipping_cost =?i WHERE order_id =?i", 0, $data['order_id']);
                     db_query("UPDATE ?:orders SET total = total - ?i WHERE order_id =?i",$data['shipping_cost'],$data['order_id']);
 
                     if ($vendor_id && empty($check_exist_united_ship_order)) {
-
                         $res = fn_sc_place_order_for_shipping_vendor($order_id,$parent_order_id, $data['shipping_cost'],$vendor_id);
-
                     }
-
-
                 }
-
             }
         }
-
     }
-
-
 }
 
 
@@ -211,7 +191,7 @@ $company_id = Registry::get('runtime.company_id');
             }
         }
     }
-    if(AREA =="C" && $order['is_parent_order'] == "Y"){
+    if(AREA =="C" && @$order['is_parent_order'] == "Y"){
         $check_exist_united_ship_order = db_get_field("SELECT order_id FROM ?:orders WHERE parent_order_id =?i and is_sc_united_ship_order = ?s", $order['order_id'], "Y");
 
         if($check_exist_united_ship_order){

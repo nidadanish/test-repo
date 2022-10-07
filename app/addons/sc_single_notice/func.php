@@ -84,7 +84,8 @@ function fn_sc_send_single_notice($parent_order_id, $status_to, $order_id, $plac
 	
     foreach ($orders as $key => &$value) {
         $value['info'] = fn_sc_get_order_info($value['order_id']);
-        $value['status_desr'] = reset(fn_get_statuses(STATUSES_ORDER,$value['info']['status']));
+        $_statuses = fn_get_statuses(STATUSES_ORDER, $value['info']['status']);
+        $value['status_desr'] = reset($_statuses);
         $value['company'] = db_get_field("SELECT company FROM ?:companies WHERE company_id = ?i",$value['info']['company_id']);
 		
 		$sc_united_use_vendor = db_get_field("SELECT sc_united_use_vendor FROM ?:companies WHERE company_id = ?i",$value['info']['company_id']);
