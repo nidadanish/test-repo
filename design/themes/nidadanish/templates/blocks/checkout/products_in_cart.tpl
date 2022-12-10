@@ -15,6 +15,14 @@
 .ty-newsletters:first-child {
 	display: none;
 }
+.ty-cart-statistic__title{
+    float: left;
+    width: 182px;
+    white-space: normal;
+}
+.ty-cart-statistic{
+    float: none !important;
+}
 .ty-cart-statistic__item {
     color: #000000 !important;
 }
@@ -66,19 +74,19 @@ input[type=checkbox]:before {
 <form name="checkout_form" class="cm-check-changes cm-ajax cm-ajax-full-render" action="{""|fn_url}" method="post" enctype="multipart/form-data" id="checkout_form">
 <input type="hidden" name="redirect_mode" value="checkout" />
 <input type="hidden" name="result_ids" value="{$result_ids}" />
-{*<div id="checkout_info_products_{$block.snapping_id}">
+<div id="checkout_info_products_{$block.snapping_id}">
     <ul class="ty-order-products__list order-product-list">
     {hook name="block_checkout:cart_items"}
         {foreach from=$cart_products key="key" item="product" name="cart_products"}
             {hook name="block_checkout:cart_products"}
                 {if !$cart.products.$key.extra.parent}
                     <li class="ty-order-products__item">
-                        <bdi><a class="litecheckout__order-products-p" href="{"products.view?product_id=`$product.product_id`"|fn_url}">{$product.product nofilter}</a></bdi>
+                        <bdi><a class="litecheckout__order-products-p" href="{"products.view?product_id=`$product.product_id`"|fn_url}">
+                                {include file="common/image.tpl" obj_id=$key images=$product.main_pair image_width=$settings.Thumbnails.product_cart_thumbnail_width image_height=$settings.Thumbnails.product_cart_thumbnail_height}
+                                {$product.product nofilter}</a></bdi>
                         {if !$product.exclude_from_calculate}
                             {include file="buttons/button.tpl" but_href="checkout.delete?cart_id=`$key`&redirect_mode=`$runtime.mode`" but_meta="ty-order-products__item-delete delete" but_target_id="cart_status*" but_role="delete" but_name="delete_cart_item"}
                         {/if}
-                        {hook name="products:product_additional_info"}
-                        {/hook}
                         <div class="ty-order-products__price">
                             {$product.amount}&nbsp;x&nbsp;{include file="common/price.tpl" value=$product.display_price}
                         </div>
@@ -90,8 +98,88 @@ input[type=checkbox]:before {
         {/foreach}
     {/hook}
     </ul>
+    <div class="ty-cart-total" style="background: white; width: 100%;">
+        <div class="ty-cart-total__wrapper clearfix" id="checkout_totals" style="padding: 8px 8px;">
+            {if $cart_products && $show_coupon}
+                <div class="ty-coupons__container">
+                    {include file="views/checkout/components/promotion_coupon.tpl"}
+                    {hook name="checkout:payment_extra"}
+                    {/hook}
+                </div>
+            {/if}
+
+
+            <ul class="ty-cart-statistic ty-statistic-list">
+                <li class="ty-cart-statistic__item ty-statistic-list-subtotal">
+                    <span class="ty-cart-statistic__title">{__("subtotal")}</span>
+                    <span class="ty-cart-statistic__value">{include file="common/price.tpl" value=$cart.display_subtotal}</span>
+                </li>
+                {if ($cart.discount|floatval)}
+                    <li class="ty-cart-statistic__item ty-statistic-list-discount">
+                        <span class="ty-cart-statistic__title">{__("including_discount")}</span>
+                        <span class="ty-cart-statistic__value discount-price">-{include file="common/price.tpl" value=$cart.discount}</span>
+                    </li>
+
+                {/if}
+
+                {if ($cart.subtotal_discount|floatval)}
+                    <li class="ty-cart-statistic__item ty-statistic-list-subtotal-discount">
+                        <span class="ty-cart-statistic__title">{__("order_discount")}</span>
+                        <span class="ty-cart-statistic__value discount-price">-{include file="common/price.tpl" value=$cart.subtotal_discount}</span>
+                    </li>
+                {/if}
+                {*				<li class="ty-cart-statistic__item ty-statistic-list-taxes ty-cart-statistic__group">*}
+                {*					<span class="ty-cart-statistic__title ty-cart-statistic_title_main">{__("taxes")}</span>*}
+                {*				</li>*}
+
+                {*				<li class="ty-cart-statistic__item ty-statistic-list-tax">*}
+                {*					<span class="ty-cart-statistic__title">VAT (18% included)</span>*}
+                {*					<span class="ty-cart-statistic__value">{include file="common/price.tpl" value=($taxes*18/100)}</span>*}
+                {*				</li>*}
+                {$show_shipping_estimation = true}
+                {if $cart.shipping_required == true}
+                    <li class="ty-cart-statistic__item ty-statistic-list-shipping-method">
+                        {if $cart.shipping}
+                            <span class="ty-cart-statistic__title">
+								{__("shipping_cost")}
+							</span>
+                            <span class="ty-cart-statistic__value">{include file="common/price.tpl" value=$cart.display_shipping_cost}</span>
+                        {elseif $show_shipping_estimation}
+                            <span class="ty-cart-statistic__title">{__("shipping_cost")}</span>
+                            <span class="ty-cart-statistic__value">{$smarty.capture.shipping_estimation nofilter}</span>
+                        {/if}
+                    </li>
+                {/if}
+
+
+
+                <li class="ty-cart-statistic__item ty-statistic-list-subtotal">
+                    <span class="ty-cart-statistic__title">{__("total")}</span>
+                    <span class="ty-cart-statistic__value">{include file="common/price.tpl" value=$cart.display_subtotal+$cart.display_shipping_cost}</span>
+                </li>
+                {if $cart.payment_surcharge}
+                    <li class="ty-cart-statistic__item ty-statistic-list-payment-surcharge" id="payment_surcharge_line">
+                        {assign var="payment_data" value=$cart.payment_id|fn_get_payment_method_data}
+                        <span class="ty-cart-statistic__title">{$cart.payment_surcharge_title|default:__("payment_surcharge")}{if $payment_data.payment}&nbsp;({$payment_data.payment}){/if}:</span>
+                        <span class="ty-cart-statistic__value">{include file="common/price.tpl" value=$cart.payment_surcharge span_id="payment_surcharge_value"}</span>
+                    </li>
+                    {math equation="x+y" x=$cart.total y=$cart.payment_surcharge assign="_total"}
+                    {capture name="_total"}{$_total}{/capture}
+                {/if}
+            </ul>
+            <div class="clearfix"></div>
+            <ul class="ty-cart-statistic__total-list">
+                <li class="ty-cart-statistic__item ty-cart-statistic__total">
+                    <span class="ty-cart-statistic__total-title">{__("total_cost")}</span>
+                    <span class="ty-cart-statistic__total-value">
+						{include file="common/price.tpl" value=$_total|default:$smarty.capture._total|default:$cart.total span_id="cart_total" class="ty-price"}
+					</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
 <!--checkout_info_products_{$block.snapping_id}--></div>
-OLD *}
 
 <div id="checkout_info_products_{$block.snapping_id}">
     {*<ul class="ty-order-products__list order-product-list">
@@ -119,7 +207,7 @@ OLD *}
     </ul>*}
 
 {capture name="cartbox"}
-
+{*
 <div id="cart_items">
     <table class="ty-cart-content ty-table">
 
@@ -328,6 +416,7 @@ OLD *}
 {*					<span class="ty-cart-statistic__title">VAT (18% included)</span>*}
 {*					<span class="ty-cart-statistic__value">{include file="common/price.tpl" value=($taxes*18/100)}</span>*}
 {*				</li>*}
+    {*
 					{$show_shipping_estimation = true}
 					{if $cart.shipping_required == true}
 						<li class="ty-cart-statistic__item ty-statistic-list-shipping-method">
@@ -371,7 +460,7 @@ OLD *}
 		</div>
 	</div>
 	<!--checkout_form--></form>
-<!--cart_items--></div>
+<!--cart_items--></div>*}
 
 {/capture}
 {include file="buttons/update_cart.tpl"
@@ -381,5 +470,11 @@ OLD *}
 }
 {include file="common/mainbox_cart.tpl" title=__("cart_items") content=$smarty.capture.cartbox}
 {script src="js/tygh/cart_content.js"}
-
+    <script>
+        $('.register_btn').addClass('hidden');
+        $('.signin_link').addClass('hidden');
+        $('.cart_link').addClass('hidden');
+        $('.header_quick_links ul li:last-child a').css('display', 'none')
+        $('.adi_menu_button').css('display', 'none');
+    </script>
 <!--checkout_info_products_{$block.snapping_id}--></div>

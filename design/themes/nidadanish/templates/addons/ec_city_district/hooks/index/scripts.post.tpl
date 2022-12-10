@@ -13,7 +13,7 @@
                         var select = document.getElementById('litecheckout_s_district');
                         select.options.length = 0;
                         select.options[select.options.length] = new Option('- {__("select_district")} -',null);
-                        $('select.cm-city.cm-location-'+$new_section, context).trigger('change'); 
+                        $('select.cm-city.cm-location-'+$new_section, context).trigger('change');
                         $('#litecheckout_s_district').val($('#litecheckout_s_district').data('caDistrict'));
                     });
                 }
@@ -40,17 +40,17 @@
 
                             select.options.length = 0;
                             select.options[select.options.length] = new Option('- {__("select_district")} -',null);
-                            // if(districts && default_country in districts && default_state in districts[default_country] && default_city in districts[default_country][default_state]) {
+                             //if(districts && default_country in districts && default_state in districts[default_country] && default_city in districts[default_country][default_state]) {
 
                                 if(districts[default_country][default_state][default_city]){
 									for (var i = 0; i < districts[default_country][default_state][default_city].length; i++) {
 										select.options[select.options.length] = new Option(districts[default_country][default_state][default_city][i]['code'], districts[default_country][default_state][default_city][i]['district_id']);
 									}
                                 }
-                            // } else {
-                                // select.options.length = 0;
-                                // select.options[select.options.length] = new Option('- {__("select_district")} -',null);
-                            // }
+                             } else {
+                                 select.options.length = 0;
+                                 select.options[select.options.length] = new Option('- { __("select_district")} -',null);
+                             //}
                         }else{
                             $.ceAjax('request', fn_url('ec_district.get_tree'),{
                                 callback:function(data) {
@@ -128,7 +128,7 @@
                 });
             }
             });
-        }(Tygh, Tygh.$));      
+        }(Tygh, Tygh.$));
     </script>
 {else}
 {$cities = fn_get_cities_tree()}
@@ -192,8 +192,8 @@
                         } else {
                             $('select.cm-city.cm-location-shipping').val('null');
                         }
-                        
-                        
+
+
                     }
                 });
             }

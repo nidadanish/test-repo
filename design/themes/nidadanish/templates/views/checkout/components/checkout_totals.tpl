@@ -8,7 +8,7 @@
         </div>
     </div>
 {/if}
-<div class="ty-cart-total">
+<div class="ty-cart-total" style="width: 100%">
     <div class="ty-cart-total__wrapper clearfix" id="checkout_totals">
         {if $cart_products}
             <div class="ty-coupons__container">
