@@ -12,10 +12,14 @@
    {foreach from=$cart_products key="key" item="product" name="cart_products"}
        {hook name="block_checkout:cart_products"}
        {if !$cart.products.$key.extra.parent}
-           <li class="ty-order-products__item">
-               <bdi><a class="litecheckout__order-products-p" href="{"products.view?product_id=`$product.product_id`"|fn_url}">
+           <li class="ty-order-products__item" style="align-content: center">
+               <bdi>
+                   <a class="litecheckout__order-products-p" href="{"products.view?product_id=`$product.product_id`"|fn_url}">
                        {include file="common/image.tpl" obj_id=$key images=$product.main_pair image_width=$settings.Thumbnails.product_cart_thumbnail_width image_height=$settings.Thumbnails.product_cart_thumbnail_height}
-                       {$product.product nofilter}</a></bdi>
+                       <br>
+                       {$product.product nofilter}
+                   </a>
+               </bdi>
                {if !$product.exclude_from_calculate}
                    {include file="buttons/button.tpl" but_href="checkout.delete?cart_id=`$key`&redirect_mode=`$runtime.mode`" but_meta="ty-order-products__item-delete delete" but_target_id="cart_status*" but_role="delete" but_name="delete_cart_item"}
                {/if}
