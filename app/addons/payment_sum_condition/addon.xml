@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<addon scheme="3.0">
+    <id>payment_sum_condition</id>
+    <version>1.0</version>
+    <priority>5000</priority>
+    <position>0</position>
+    <auto_install>MULTIVENDOR,ULTIMATE</auto_install>
+    <default_language>en</default_language>
+    <status>active</status>
+    <supplier>CS-Cart Support</supplier>
+    <queries>
+        <item for="install" editions="ULTIMATE,MULTIVENDOR">
+            ALTER TABLE `?:payments` ADD min_value decimal(13,3) unsigned DEFAULT 0, ADD COLUMN max_value decimal(13,3) unsigned DEFAULT 0;
+        </item>
+        <item for="uninstall">ALTER TABLE `?:payments` DROP COLUMN `min_value`, DROP COLUMN `max_value`;</item>
+    </queries>
+<marketplace_product_id>3517</marketplace_product_id><marketplace_license_number>MP-5L71-S9M7-5CMI-2W56</marketplace_license_number></addon>

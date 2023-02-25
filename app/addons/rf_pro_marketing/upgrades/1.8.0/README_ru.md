@@ -1,0 +1,1 @@
+Улучшена интеграция и дедупликация событий пикселя Facebook и Facebook Conversion API.

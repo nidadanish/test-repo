@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<addon scheme="3.0">
+    <id>csc_changes_post</id>
+    <name>[CS-Coding]: Changes Post</name>
+    <version>1.0</version>
+    <priority>9999999</priority>
+    <status>active</status>
+    <supplier_link>https://www.store.cs-coding.com</supplier_link>
+    <authors>
+        <author>
+            <name>CS-Coding</name>
+            <email>manager@cs-coding.com</email>
+            <url>https://www.store.cs-coding.com</url>
+        </author>
+    </authors>
+</addon>

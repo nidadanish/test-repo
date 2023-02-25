@@ -1,0 +1,2 @@
+
+{capture name="abt__service_buttons_id"}{if $block.properties}ut2_list_buttons_{$obj_id}_{$block.block_id}_{$selected_layout|default:{str_replace("/", "_", substr($block.properties.template|default:"", 0,-4))}}{/if}{/capture}

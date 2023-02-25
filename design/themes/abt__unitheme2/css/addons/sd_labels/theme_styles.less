@@ -1,0 +1,28 @@
+.sd-col-full-width {
+    width: 100%;
+}
+
+// Products list > Template: Grid
+.ut2-gl__item {
+    .sd-labels--location-overlay {
+        margin-top: 15px;
+        margin-left: 64px; // Indent for small buttons
+        margin-right: 15px;
+        padding: 0;
+
+        @media (max-width: 767px) {
+            margin-left: 46px; // Indent for small buttons
+        }
+    }
+
+    &:hover .sd-labels--location-overlay {
+        z-index: 4;
+    }
+}
+
+// Products list > Template: Products
+.ty-product-list {
+    .sd-labels--location-overlay {
+        margin-left: 50px;
+    }
+}

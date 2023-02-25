@@ -1,0 +1,269 @@
+/*******************************************************************************************
+*   ___  _          ______                     _ _                _                        *
+*  / _ \| |         | ___ \                   | (_)              | |              © 2021   *
+* / /_\ | | _____  _| |_/ /_ __ __ _ _ __   __| |_ _ __   __ _   | |_ ___  __ _ _ __ ___   *
+* |  _  | |/ _ \ \/ / ___ \ '__/ _` | '_ \ / _` | | '_ \ / _` |  | __/ _ \/ _` | '_ ` _ \  *
+* | | | | |  __/>  <| |_/ / | | (_| | | | | (_| | | | | | (_| |  | ||  __/ (_| | | | | | | *
+* \_| |_/_|\___/_/\_\____/|_|  \__,_|_| |_|\__,_|_|_| |_|\__, |  \___\___|\__,_|_| |_| |_| *
+*                                                         __/ |                            *
+*                                                        |___/                             *
+* ---------------------------------------------------------------------------------------- *
+* This is commercial software, only users who have purchased a valid license and accept    *
+* to the terms of the License Agreement can install and use this program.                  *
+* ---------------------------------------------------------------------------------------- *
+* website: https://cs-cart.alexbranding.com                                                *
+*   email: info@alexbranding.com                                                           *
+*******************************************************************************************/
+
+.ut2-blog {
+	&__item:not(:last-child) {
+	    margin-bottom: @pdf - 5;
+	    padding-bottom: @pdf;
+	    border-bottom: 1px solid @base;
+	    .clearfix();
+	}
+	&__title-block {
+		display: block;
+		padding-right: @pdi*2;
+		
+		.ut2-blog__date {
+			font-size: 12px;
+		}
+	}
+	&__post-title {
+		margin-bottom: 5px;
+	}
+	&__img-block {
+		position: relative;
+		display: inline-block;
+		float: left;
+		padding-right: @pdi*2;
+		margin-top: 5px;
+		img {
+			margin: 0
+		}
+		.ut2-blog__date {
+		    position: absolute;
+		    padding: 3px 5px;
+		    color: @base;
+		    background: rgba(0, 0, 0, 0.5);
+		    bottom: 0;
+		    font-size: 10px;
+		}
+	}
+	&__description {
+	    display: inline-block;
+	    padding-right: @pdi*2;
+	   .xcalc(420px);
+	}
+	&__read-more {
+		margin-top: @pdi;
+		a {
+			font-size: @body_font_size;
+		}
+	}
+	
+	@media screen and (max-width: 1024px) {
+		&__item:not(:last-child) {
+			margin-bottom: @pd;
+			padding-bottom: @pd;
+		}
+		&__img-block {
+			width: 100%;
+			padding-right: 0;
+			margin-bottom: @pd;
+		}
+		&__description {
+			width: 100%;
+			padding-right: 0;
+		}
+	}
+	@media screen and (max-width: 480px) {
+		&__img-block img {
+			width: 100%;
+		}		
+	}
+}
+
+.ty-blog-grid {
+	.ty-mainbox-container {
+		background: @content_bg;
+		margin-bottom: @pdf;
+	}
+	.ut2-blog__post-title {
+		font-size: @headings_font_size;
+
+		.uppercase() when (@abt__ut2_general_use_titles_uppercase = true) {
+			font-size: @headings_font_size - 4px;
+			text-transform: uppercase;
+		}
+		.uppercase();
+	}
+	.ty-wysiwyg-content .ut2-blog {
+
+		&__img-block {
+			display: block;
+			float: none;
+			margin: @pdi 0 @pdi*2;
+		}
+		&__date {
+			color: @lighten-max-font;
+			font-size: 12px;
+		}
+	}
+	.discussion-block {
+		padding-top: @pdi;
+		margin-top: @pdi*2;
+		border-top: 1px solid @base;
+	}
+}
+
+.ut2-blog {
+	&__recent-posts {
+		display: flex;
+	    flex-wrap: wrap;
+	    flex-direction: column;
+	    margin: 0 -5px;
+	    flex: 1;
+	    height: 460px;
+	    
+		&--img {
+		    position: relative;
+		    margin-bottom: 10px;
+		    min-height: 150px;
+		    width: 100%;
+		    background-size: cover;
+		    &.cover {
+		        background-position: center center;
+		        &.no-image {
+		            background: rgba(255, 255, 255, 0.5) url(data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMS4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDMxLjA1OCAzMS4wNTgiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDMxLjA1OCAzMS4wNTg7IiB4bWw6c3BhY2U9InByZXNlcnZlIiB3aWR0aD0iMzJweCIgaGVpZ2h0PSIzMnB4Ij4KPGc+Cgk8Zz4KCQk8cGF0aCBkPSJNMzAuMTcxLDMxLjA1OEgwLjg4N0MwLjM5NywzMS4wNTgsMCwzMC42NjEsMCwzMC4xNzFWMC44ODhDMCwwLjM5OCwwLjM5NywwLDAuODg3LDBoMjkuMjg0ICAgIGMwLjQ5LDAsMC44ODcsMC4zOTgsMC44ODcsMC44ODh2MjkuMjgzQzMxLjA1OCwzMC42NjEsMzAuNjYxLDMxLjA1OCwzMC4xNzEsMzEuMDU4eiBNMS43NzUsMjkuMjg1aDI3LjUwOVYxLjc3NUgxLjc3NVYyOS4yODV6IiBmaWxsPSIjOTk5OTk5Ii8+Cgk8L2c+Cgk8Zz4KCQk8cGF0aCBkPSJNMC44ODcsMzEuMDU4Yy0wLjIxMSwwLTAuNDIzLTAuMDc0LTAuNTkzLTAuMjI3Yy0wLjM2NC0wLjMyNy0wLjM5NC0wLjg4OS0wLjA2Ny0xLjI1M2w4Ljg3NC05Ljg4ICAgIGMwLjE2LTAuMTc4LDAuMzg0LTAuMjgzLDAuNjIzLTAuMjkzYzAuMjMzLTAuMDEyLDAuNDcxLDAuMDc2LDAuNjQ1LDAuMjM4bDIuMzA4LDIuMTY2bDYuOTkxLTYuOTEyICAgIGMwLjMzNS0wLjMzLDAuODctMC4zNDIsMS4yMTgtMC4wMjdsOS44OCw4LjkwM2MwLjE4NywwLjE2OCwwLjI5MywwLjQwNywwLjI5MywwLjY1OXY1LjczOGMwLDAuNDktMC4zOTcsMC44ODctMC44ODcsMC44ODdoLTkuODggICAgYy0wLjIyNiwwLTAuNDQyLTAuMDg2LTAuNjA3LTAuMjRMOS44MTUsMjEuNTZsLTguMjY4LDkuMjA0QzEuMzcyLDMwLjk1OSwxLjEzLDMxLjA1OCwwLjg4NywzMS4wNTh6IE0yMC42NDIsMjkuMjg1aDguNjQydi00LjQ1NyAgICBsLTguOTY0LTguMDc4bC02LjM0OCw2LjI3NUwyMC42NDIsMjkuMjg1eiIgZmlsbD0iIzk5OTk5OSIvPgoJPC9nPgoJPGc+CgkJPHBhdGggZD0iTTEwLjAyOCwxNS43OTZjLTIuMzQ5LDAtNC4yNi0xLjkxMi00LjI2LTQuMjZjMC0yLjM0OSwxLjkxMS00LjI2LDQuMjYtNC4yNiAgICBzNC4yNTksMS45MTEsNC4yNTksNC4yNkMxNC4yODcsMTMuODg0LDEyLjM3NiwxNS43OTYsMTAuMDI4LDE1Ljc5NnogTTEwLjAyOCw5LjA1MmMtMS4zNywwLTIuNDg1LDEuMTE0LTIuNDg1LDIuNDg0ICAgIGMwLDEuMzY5LDEuMTE1LDIuNDg0LDIuNDg1LDIuNDg0YzEuMzcsMCwyLjQ4NC0xLjExNSwyLjQ4NC0yLjQ4NEMxMi41MTIsMTAuMTY2LDExLjM5Nyw5LjA1MiwxMC4wMjgsOS4wNTJ6IiBmaWxsPSIjOTk5OTk5Ii8+Cgk8L2c+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==) no-repeat center;
+		            background-size: inherit !important;
+		            .box-shadow(inset 0 0 0 1px rgba(255, 255, 255, 0.1));
+		        }
+		    }
+		}	    
+		&--item {
+		    flex: 1;
+		    padding: 5px;
+		    width: 20%;
+		    
+			&.first {
+				width: 40%;
+				padding-right: @pd;
+				
+				.ut2-blog__recent-posts--img {
+					min-height: 380px;
+				}
+			}
+			.ut2-blog__date {
+			    position: absolute;
+			    padding: 3px 5px;
+			    color: @base;
+			    background: rgba(0, 0, 0, 0.5);
+			    bottom: 0;
+			    font-size: 10px;
+			}
+		    &:hover {
+			    .ut2-blog__recent-posts--title {
+					text-decoration: underline;
+				}
+				.ut2-blog__recent-posts--img {
+					.ut2-hover-effect();
+				}
+		    }
+		}
+		&--title {
+		    color: @font;
+		    font-size: 14px;
+		    padding-bottom: 10px;
+		    padding-right: 10px;
+		    min-height: 42px;
+		    width: 100%;
+		    max-width: 300px;
+	    }
+		@media screen and (max-width: 1200px) {
+	    	height: 420px;
+
+		    &--item {
+			    padding: 0 5px;
+			    &.first .ut2-blog__recent-posts--img {
+				    min-height: 346px;
+			    }
+		    }
+		    &--img {
+				min-height: 136px;
+		    }
+	    	&--title {
+			    font-size: @body_font_size;
+		    }
+	    }
+    	@media screen and (max-width: 992px) {
+	    	&--item {
+				max-width: calc(~'100%/3');
+				flex: 1 calc(~'100%/3');
+				min-width: 177px;
+				&.first {
+					padding-right: 5px;
+					.ut2-blog__recent-posts--img {
+						min-height: 136px;
+					}
+				}
+			}
+	    }
+	    @media screen and (max-width: 576px) {
+		    &--item {
+		    	min-width: 50%;
+		    }
+	    }
+	    @media screen and (max-width: 320px) {
+		    &--item {
+		    	min-width: 100%;
+		    }
+	    }
+	    @media screen and (max-width: 992px) {
+			flex-direction: row;
+			height: auto;
+	    }
+	    
+	    &.scroller {
+		    .ut2-blog {
+		    	&__recent-posts {
+			    	&--item {
+				    	width: 100%;
+			    	}
+			    }
+		    }
+	    }
+	}
+	&__button {
+		flex-direction: row-reverse;
+		i {
+			padding-left: 5px;
+		}
+		@media screen and (max-width: 480px) {
+		    display: flex;
+		    margin: 0 auto;
+	    }
+	}
+}
+
+.ut2-blog__recent-posts.scroller {
+	height: auto !important;	
+    .ut2-blog {
+	    &__recent-posts {
+		    
+		    &--item {
+			    max-width: 100%;
+			    flex: 1;
+		    }
+		    &--img {
+			    min-height: 200px;
+			    max-height: 200px;
+		    }
+	    }
+    }
+}
+
+.ty-blog-sidebox__item {
+    margin-bottom: 10px;
+}

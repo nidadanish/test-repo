@@ -1,0 +1,1 @@
+{if $ab__search_similar_in_category && $feature.filter_id}{$ab__enable_similar_filter = true scope=global}<input type="checkbox" class="cm-ab-similar-filter" name="features_hash[{$feature.filter_id}]" data-ca-filter-id="{$feature.filter_id}" value="{$variant_id}">{/if}

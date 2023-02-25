@@ -1,0 +1,1 @@
+Facebook pixel integration and events deduplication was improved.

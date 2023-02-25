@@ -1,0 +1,272 @@
+/*******************************************************************************************
+*   ___  _          ______                     _ _                _                        *
+*  / _ \| |         | ___ \                   | (_)              | |              © 2021   *
+* / /_\ | | _____  _| |_/ /_ __ __ _ _ __   __| |_ _ __   __ _   | |_ ___  __ _ _ __ ___   *
+* |  _  | |/ _ \ \/ / ___ \ '__/ _` | '_ \ / _` | | '_ \ / _` |  | __/ _ \/ _` | '_ ` _ \  *
+* | | | | |  __/>  <| |_/ / | | (_| | | | | (_| | | | | | (_| |  | ||  __/ (_| | | | | | | *
+* \_| |_/_|\___/_/\_\____/|_|  \__,_|_| |_|\__,_|_|_| |_|\__, |  \___\___|\__,_|_| |_| |_| *
+*                                                         __/ |                            *
+*                                                        |___/                             *
+* ---------------------------------------------------------------------------------------- *
+* This is commercial software, only users who have purchased a valid license and accept    *
+* to the terms of the License Agreement can install and use this program.                  *
+* ---------------------------------------------------------------------------------------- *
+* website: https://cs-cart.alexbranding.com                                                *
+*   email: info@alexbranding.com                                                           *
+*******************************************************************************************/
+
+@ut2-three-column-min-width: 250px;
+@ut2-three-column-max-width: 400px;
+
+.ty-product-block.ut2-three-columns {
+
+    &.ut2-pb {
+
+        .ty-breadcrumbs {
+            margin-bottom: 10px;
+        }
+
+        @media screen and (min-width: 769px) {
+            .top-product-layer {
+                position: absolute;
+                left: 0;
+                width: 100%;
+                margin: -50px 0 0 0;
+                padding: 0;
+                border: 0;
+                justify-content: flex-start;
+            }
+            .ut2-pb__sku:not(:only-child) {
+                position: absolute;
+                right: 0;
+            }
+            .ut2-pb__rating {
+                margin-right: @pd;
+            }
+        }
+        @media screen and (max-width: 768px) {
+            .top-product-layer {
+                margin: 0 -@pd @pd;
+                padding: @pdi;
+                border-bottom: 0;
+                background: lighten(@base, 3%);
+                justify-content: center;
+
+            }
+        }
+
+        &:not(.sticky_add_to_cart) .ut2-pb__button .ut2-qty__wrap {
+            margin-bottom: @pdi;
+        }
+        &.sticky_add_to_cart .ut2-pb__button .ut2-qty__wrap {
+            width: auto;
+        }
+
+        .cols-wrap {
+            height: 100%;
+            justify-content: flex-end;
+            z-index: 1;
+
+            @media screen and (min-width: 1025px) {
+                flex-wrap: nowrap;
+
+                .col-left {
+                    flex: 1 220px;
+                    max-width: 400px;
+                    padding-right: @pdi*2;
+                    padding-bottom: @pdi*2;
+                    position: -webkit-sticky;
+                    position: sticky;
+                    top: @light-header-height + @pdi*2;
+                    bottom: @pd;
+
+                    .sticky {
+                        position: -webkit-sticky;
+                        position: sticky;
+                        top: @light-header-height + @pdi*2;
+                        bottom: @pd;
+
+                        > div:not(:last-of-type) {
+                            margin-bottom: @pdi;
+                        }
+                    }
+                }
+                .col-right {
+                    flex: 1 @ut2-three-column-min-width;
+                    align-self: flex-start;
+                    max-width: @ut2-three-column-max-width;
+                    padding: @pdi*2;
+                    background: lighten(@content_bg, 15%);
+                    box-shadow: 0 0.1rem 2rem fade(@font, 10%);
+                    position: -webkit-sticky;
+                    position: sticky;
+                    top: @light-header-height + @pdi*2;
+
+                    .ut2_round(@round: 8px) when (@abt__ut2_general_use_rounding = little) {
+        				border-radius: @round;
+        			}
+        			.ut2_round(@round: 16px) when (@abt__ut2_general_use_rounding = full) {
+        				border-radius: @round;
+        			}
+        			.ut2_round();
+                }
+            }
+            @media screen and (max-width: 1024px) {
+                flex-direction: column;
+
+                .col-right > div {
+                    max-width: 100%;
+                }
+                .col-left {
+                    padding-right: 0;
+                    
+                    .sticky > div {
+                        margin-bottom: @pd;
+                    }
+                }
+                .ut2-pb__button .ty-btn {
+                    max-width: 49%;
+                    
+                    span {
+                        max-width: initial;
+                    }
+                    & + .ty-btn:not(.ty-btn__primary) {
+                        margin-left: 2%;
+                    }
+                }
+            }
+            @media screen and (max-width: 1200px) and (min-width: 1025px) {
+                .col-right {
+                    padding: @pdi*2 @pd;
+                }
+            }
+        }
+
+
+        @media screen and (min-width: 768px) {
+            #ab-spt-heading-navigation-tab:not(:empty) {
+                margin-bottom: 20px;
+            }
+        }
+    }
+
+    .ut2-pb {
+        &__wrapper {
+            @media screen and (min-width: 768px) {
+                padding-top: 50px;
+                padding-bottom: @pd;
+            }
+        }
+        &__second {
+            width: 100%;
+            align-self: flex-start;
+
+            > form {
+                height: 100%;
+            }
+
+            @media screen and (min-width: 768px) {
+                flex: 1;
+            }
+        }
+
+        &__img-wrapper {
+
+            @media screen and (min-width: 1025px) {
+                max-width: 45%;
+
+                .ut2-pb__img {
+                    position: -webkit-sticky;
+                    position: sticky;
+                    top: @light-header-height + @pdi*2;
+                    bottom: @pd;
+                }
+            }
+        }
+
+        &__product-brand {
+            padding: 0;
+        }
+
+        &__note {
+            background-color: lighten(@base, 3%);
+            padding: 12px @pdi 6px @pdi;
+            margin-bottom: @pdi;
+
+            .ut2_round(@round: 8px) when (@abt__ut2_general_use_rounding = little) {
+				border-radius: @round;
+			}
+			.ut2_round(@round: 16px) when (@abt__ut2_general_use_rounding = full) {
+				border-radius: @round;
+			}
+			.ut2_round();
+
+            p {
+                padding-top: 0;
+            }
+        }
+
+        &__button {
+            @media screen and (min-width: 1025px) {
+                margin-bottom: @pdi*2;
+
+                .ty-btn {
+                    height: 50px;
+                }
+            }
+        }
+
+        &__option .ty-control-group__label,
+        &__advanced-option .ty-control-group__label,
+        .ut2-qty__wrap .ty-control-group__label {
+            font-size: 14px;
+            padding: 4px 0;
+        }
+
+        &__share-block {
+            justify-content: flex-start;
+        }
+    }
+
+    .prices-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+
+        .ty-product-prices {
+            margin: 0;
+            padding-right: @pd;
+            width: 100%;
+        }
+        .ty-list-price {
+            font-size: 16px;
+        }
+        .ty-price-num {
+            font-size: 24px;
+        }
+        .ty-save-price {
+            padding-top: 5px;
+            font-size: @body_font_size;
+
+            * {
+                font-size: @body_font_size;
+            }
+        }
+        .ty-tax-include {
+            font-size: @body_font_size;
+        }
+    }
+
+    .ty-popup-tabs {
+        @media screen and (min-width: 768px) {
+            padding-top: @pd;
+            text-align: right;
+        }
+    }
+}
+
+html.dialog-is-open .ut2-three-columns .cols-wrap {
+    .col-left {
+        z-index: -1;
+    }
+}

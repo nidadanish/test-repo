@@ -1,0 +1,1 @@
+<p class="description">{__("abt__ut2.light_menu_settings_link", ["[link]" => "abt__ut2.light_menu_content"|fn_url])}</p>

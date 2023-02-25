@@ -1,0 +1,120 @@
+/*******************************************************************************************
+*   ___  _          ______                     _ _                _                        *
+*  / _ \| |         | ___ \                   | (_)              | |              © 2021   *
+* / /_\ | | _____  _| |_/ /_ __ __ _ _ __   __| |_ _ __   __ _   | |_ ___  __ _ _ __ ___   *
+* |  _  | |/ _ \ \/ / ___ \ '__/ _` | '_ \ / _` | | '_ \ / _` |  | __/ _ \/ _` | '_ ` _ \  *
+* | | | | |  __/>  <| |_/ / | | (_| | | | | (_| | | | | | (_| |  | ||  __/ (_| | | | | | | *
+* \_| |_/_|\___/_/\_\____/|_|  \__,_|_| |_|\__,_|_|_| |_|\__, |  \___\___|\__,_|_| |_| |_| *
+*                                                         __/ |                            *
+*                                                        |___/                             *
+* ---------------------------------------------------------------------------------------- *
+* This is commercial software, only users who have purchased a valid license and accept    *
+* to the terms of the License Agreement can install and use this program.                  *
+* ---------------------------------------------------------------------------------------- *
+* website: https://cs-cart.alexbranding.com                                                *
+*   email: info@alexbranding.com                                                           *
+*******************************************************************************************/
+/* ==========================================================================
+Social buttons
+========================================================================== */
+.ty-social-buttons {
+    margin: 20px 0px;
+}
+.ty-social-buttons__inline {
+    display: inline-block;
+    vertical-align: top;
+    margin: 5px 20px 10px 0;
+}
+.ty-social-buttons__email-sharing {
+    text-decoration: none;
+}
+.ty-social-buttons__email-icon {
+    vertical-align: middle;
+    margin-left: 5px;
+    font-size: 16px;
+}
+.ty-product-bigpicture .ty-social-buttons__inline {
+    margin: 5px 0 0;
+}
+.pinterest__wrapper {
+    margin-top: -1px;
+    display: block;
+}
+
+.ut2-pb {
+
+	&__share-block {
+        @media screen and (min-width: 768px) {
+        	visibility: hidden;
+        	opacity: 0;
+    	}
+		position: relative;
+	    display: flex;
+	    flex-wrap: wrap;
+	    align-items: center;
+	    justify-content: flex-start;
+	    width: 100%;
+	    margin-top: @pd/2;
+
+		.share-link {
+			display: inline-flex;
+			align-items: center;
+			position: relative;
+			color: @lighten-font;
+			padding: 5px @pd 5px 0;
+			
+			i {
+				position: relative;
+				top: -1px;
+				font-size: 18px;
+				margin-right: 3px;
+			}
+		}
+	}
+	.ut2-social-buttons {
+	    display: inline-flex;
+	    flex-wrap: wrap;
+	    align-items: flex-end;
+	    justify-content: center;
+	    margin: 0;
+	    padding: 10px 0;
+
+		&__inline {
+		    display: inline-flex;
+		    align-items: center;
+		    margin-left: 1px;
+		    padding: 0;
+		    
+		    .pinterest__wrapper a {
+    		    line-height: 18px;
+    		    background-position-x: 7px;
+                padding: 0 6px;
+                border-radius: 3px;
+            }
+		}
+	}		
+	@media screen and (max-width: 767px) {
+    	margin-bottom: 0;
+
+    	.ut2-social-buttons {
+    		&__inline {
+        		margin: 5px 0;
+        		padding: 0;
+    		}
+		}
+	}
+	
+	.ty-tabs__content + &__share-block {
+    	margin-top: @pd;
+	}
+}
+
+@media screen and (min-width: 768px) {
+    html.mouseevents, html.touchevents {
+        .ut2-pb__share-block {
+            transition-delay: 2s;
+            visibility: visible;
+            opacity: 1;
+        }
+    }
+}
